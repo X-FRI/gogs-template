@@ -87,15 +87,16 @@
 
 		{{if not .PageIsInstall}}
 			<div class="ui main text container">
-				<img class="ui centered image" src="https://uabutler.com/assets/common/name.jpg" alt="Ulysses Butler" title="This was typed on a Royal typewriter I got a few years ago" />
+				<h1>The X-Files Research Institute Coding Space</h1>
 			</div>
 
 			<div class="ui borderless large main menu" id="main-menu">
 				<div class="ui container">
-					<a href="https://uabutler.com" class="item">Home</a>
-					<a href="https://uabutler.com/resume.html" class="item">R&eacute;sum&eacute;</a>
+					<a href="{{AppSubURL}}" class="item">Home</a>
+					<a href="https://github.com/x-fri" class="item">Github</a>
+					
 					<div class="ui dropdown item">
-						Git <i class="dropdown icon"></i>
+						Other <i class="dropdown icon"></i>
 						<div class="menu">
 							{{if not .IsLogged}}
 								<a class="item" href="{{AppSubURL}}/">Home</a>
@@ -103,10 +104,10 @@
 							<a class="item" href="{{AppSubURL}}/explore/repos">Explore</a>
 							<div class="divider"></div>
 							<div class="header">Featured Repos</div>
-							<a class="item" href="https://git.uabutler.com/uab/orts">Override Tracking System</a>
-							<a class="item" href="https://git.uabutler.com/uab/resume">Resume</a>
-							<a class="item" href="https://git.uabutler.com/uab/minesweeper">Minesweeper</a>
-							<a class="item" href="https://git.uabutler.com/uab/is-derivable">Prolog Regex Parser</a>
+							<a class="item" href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=wNjj32N_9Sfy5u0j8sXdeAceYJLnIhWt&authKey=eV5b4ojGyFvf%2B%2F9QNykUN8oyOLyyzIc7xXh7G1qXJWvvFM4SJHD4HzdU2qrlxfOD&noverify=0&group_code=780653172">QQ Grouop</a>
+							<a class="item" href="https://t.me/xfri_cn">Telegram</a>
+							<a class="item" href="https://discord.com/invite/eZZ8xjpd">Discord</a>
+							<a class="item" href="https://matrix.to/#/!rpzCLjdfFrqZAULJJV:matrix.org?via=matrix.org&via=opensuse.org&via=mozilla.org">Matrix</a>
 							{{if .IsLogged}}
 								<div class="divider"></div>
 								<div class="header">User</div>
@@ -116,8 +117,6 @@
 							{{end}}
 						</div>
 					</div>
-					<a href="http://lab.uabutler.com" class="item">The Lab</a>
-					<a href="https://uabutler.com/about.html" class="item">About</a>
 					<div class="right menu">
 						<a class="item{{if .PageIsExplore}} active{{end}}" href="{{AppSubURL}}/explore/repos">{{.i18n.Tr "explore"}}</a>
 						{{if .IsLogged}}

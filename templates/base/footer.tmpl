@@ -1,0 +1,70 @@
+{{/*
+<html>
+<body>
+<div>
+	<div>
+*/}}
+	</div>
+	<div id="page-footer-content-container">
+		<div class="ui inverted vertical footer segment">
+			<div class="ui center aligned container">
+				<div class="ui stackable inverted grid">
+					<div class="two wide column">
+						<i class="big facebook link icon" onclick="parent.location='https://www.facebook.com/ulyssesabutler'"></i>
+					</div>
+					<div class="two wide column">
+						<i class="big github link icon" onclick="parent.location='https://github.com/uabutler'"></i>
+					</div>
+					<div class="two wide column">
+						<i class="big linkedin link icon" onclick="parent.location='https://www.linkedin.com/in/uabutler'"></i>
+					</div>
+					<div class="two wide column">
+						<i class="big mail link icon" onclick="location.href='mailto:ulysses@uabutler.com'"></i>
+					</div>
+					<div class="eight wide column">
+						<h4 class="ui inverted header">&copy; 2022, Ulysses A. Butler</h4>
+						<p><i>Because a copyright notice makes things look official</i></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+
+<!-- Third-party libraries -->
+{{if .RequireHighlightJS}}
+	<link rel="stylesheet" href="{{AppSubURL}}/plugins/highlight-9.18.0/github.css">
+	<script src="{{AppSubURL}}/plugins/highlight-9.18.0/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+{{end}}
+{{if .RequireMinicolors}}
+	<link rel="stylesheet" href="{{AppSubURL}}/plugins/jquery.minicolors-2.2.3/jquery.minicolors.css">
+	<script src="{{AppSubURL}}/plugins/jquery.minicolors-2.2.3/jquery.minicolors.min.js"></script>
+{{end}}
+{{if .RequireDatetimepicker}}
+	<link rel="stylesheet" href="{{AppSubURL}}/plugins/jquery.datetimepicker-2.4.5/jquery.datetimepicker.css">
+	<script src="{{AppSubURL}}/plugins/jquery.datetimepicker-2.4.5/jquery.datetimepicker.js"></script>
+{{end}}
+{{if .RequireDropzone}}
+	<link rel="stylesheet" href="{{AppSubURL}}/plugins/dropzone-5.5.0/dropzone.min.css">
+	<script src="{{AppSubURL}}/plugins/dropzone-5.5.0/dropzone.min.js"></script>
+	<script>Dropzone.autoDiscover = false</script>
+{{end}}
+{{if .RequireAutosize}}
+	<script src="{{AppSubURL}}/plugins/autosize-4.0.2/autosize.min.js"></script>
+{{end}}
+{{if .IsMarkdown}}
+	<script src="{{AppSubURL}}/plugins/mermaid-8.14.0/mermaid.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			mermaid.init({startOnLoad: true, noteMargin: 10}, ".language-mermaid");
+		});
+	</script>
+{{end}}
+
+<script src="{{AppSubURL}}/js/libs/emojify-1.1.0.min.js"></script>
+<script src="{{AppSubURL}}/js/libs/clipboard-2.0.4.min.js"></script>
+
+{{template "inject/footer" .}}
+</html>

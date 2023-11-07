@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head data-suburl="{{AppSubURL}}">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	{{if not .PageIsAdmin}}
+		<meta name="author" content="{{if .Repository}}{{.Owner.Name}}{{else}}Gogs{{end}}" />
+		<meta name="description" content="{{if .Repository}}{{.Repository.Name}}{{if .Repository.Description}} - {{.Repository.Description}}{{end}}{{else}}Gogs is a painless self-hosted Git service{{end}}" />
+		<meta name="keywords" content="go, git, self-hosted, gogs">
+	{{end}}
+	<meta name="referrer" content="no-referrer" />
+	<meta name="_csrf" content="{{.CSRFToken}}" />
+	<meta name="_suburl" content="{{AppSubURL}}" />
+
+	<!-- Open Graph Tags -->
+	{{if .PageIsAdmin}}
+	{{else if .PageIsUserProfile}}
+		<meta property="og:url" content="{{.Owner.HTMLURL}}" />
+		<meta property="og:type" content="profile" />
+		<meta property="og:title" content="{{.Owner.Name}}{{if .Owner.FullName}} ({{.Owner.FullName}}){{end}}">
+		<meta property="og:description" content="{{.Owner.Name}} has {{.Owner.NumFollowers}} followers and is following {{.Owner.NumFollowing}} people.">
+		<meta property="og:image" content="{{.Owner.AvatarURL}}" />
+	{{else if .Repository}}
+		<meta property="og:url" content="{{.Repository.HTMLURL}}" />
+		<meta property="og:type" content="object" />
+		<meta property="og:title" content="{{.Repository.FullName}}">
+		<meta property="og:description" content="{{.Repository.Description}}">
+		<meta property="og:image" content="{{.Repository.Owner.AvatarURL}}" />
+	{{else}}
+		<meta property="og:url" content="{{AppURL}}" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="{{AppName}}">
+		<meta property="og:description" content="Gogs is a painless self-hosted Git service.">
+		<meta property="og:image" content="{{AppURL}}img/favicon.png" />
+		<meta property="og:site_name" content="Gogs">
+	{{end}}
+
+	<link rel="shortcut icon" href="{{AppSubURL}}/img/favicon.png" />
+
+	<script src="{{AppSubURL}}/js/jquery-3.6.0.min.js"></script>
+	<script src="{{AppSubURL}}/js/libs/jquery.are-you-sure.js"></script>
+	<link rel="stylesheet" href="{{AppSubURL}}/assets/font-awesome-4.6.3/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{{AppSubURL}}/assets/octicons-4.3.0/octicons.min.css">
+
+	<!-- notebook.js for rendering ipython notebooks and marked.js for rendering markdown in notebooks -->
+	{{if .IsIPythonNotebook}}
+		<script src="{{AppSubURL}}/plugins/notebookjs-0.4.2/notebook.min.js"></script>
+		<script src="{{AppSubURL}}/plugins/marked-0.8.1/marked.min.js"></script>
+	{{end}}
+
+	{{if .RequireSimpleMDE}}
+		<link rel="stylesheet" href="{{AppSubURL}}/plugins/simplemde-1.10.1/simplemde.min.css">
+		<script src="{{AppSubURL}}/plugins/simplemde-1.10.1/simplemde.min.js"></script>
+		<script src="{{AppSubURL}}/plugins/codemirror-5.17.0/addon/mode/loadmode.js"></script>
+		<script src="{{AppSubURL}}/plugins/codemirror-5.17.0/mode/meta.js"></script>
+		<script>
+			CodeMirror.modeURL =  "{{AppSubURL}}/plugins/codemirror-5.17.0/mode/%N/%N.js";
+		</script>
+	{{end}}
+
+	<!-- Stylesheet -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+	<link rel="stylesheet" href="{{AppSubURL}}/css/gogs.uabutler.css">
+	<link rel="stylesheet" href="{{AppSubURL}}/css/uabutler-main.css">
+	<noscript>
+		<style>
+			.dropdown:hover > .menu { display: block; }
+			.ui.secondary.menu .dropdown.item > .menu { margin-top: 0; }
+		 </style>
+	</noscript>
+
+	<!-- JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+	<script src="{{AppSubURL}}/js/gogs.js?v={{BuildCommit}}"></script>
+	<script src="{{AppSubURL}}/js/uabutler-main.js"></script>
+
+	<title>{{if .Title}}{{.Title}} - {{end}}{{AppName}}</title>
+
+	<meta name="theme-color" content="{{ThemeColorMetaTag}}">
+
+	{{template "inject/head" .}}
+</head>
+<body>
+<div id="full-page-grid-container">
+	<div id="page-main-content-container">
+		<noscript>This website works better with JavaScript</noscript>
+
+		{{if not .PageIsInstall}}
+			<div class="ui main text container">
+				<img class="ui centered image" src="https://uabutler.com/assets/common/name.jpg" alt="Ulysses Butler" title="This was typed on a Royal typewriter I got a few years ago" />
+			</div>
+
+			<div class="ui borderless large main menu" id="main-menu">
+				<div class="ui container">
+					<a href="https://uabutler.com" class="item">Home</a>
+					<a href="https://uabutler.com/resume.html" class="item">R&eacute;sum&eacute;</a>
+					<div class="ui dropdown item">
+						Git <i class="dropdown icon"></i>
+						<div class="menu">
+							{{if not .IsLogged}}
+								<a class="item" href="{{AppSubURL}}/">Home</a>
+							{{end}}
+							<a class="item" href="{{AppSubURL}}/explore/repos">Explore</a>
+							<div class="divider"></div>
+							<div class="header">Featured Repos</div>
+							<a class="item" href="https://git.uabutler.com/uab/orts">Override Tracking System</a>
+							<a class="item" href="https://git.uabutler.com/uab/resume">Resume</a>
+							<a class="item" href="https://git.uabutler.com/uab/minesweeper">Minesweeper</a>
+							<a class="item" href="https://git.uabutler.com/uab/is-derivable">Prolog Regex Parser</a>
+							{{if .IsLogged}}
+								<div class="divider"></div>
+								<div class="header">User</div>
+								<a class="item" href="{{AppSubURL}}/">{{.i18n.Tr "dashboard"}}</a>
+								<a class="item" href="{{AppSubURL}}/issues">{{.i18n.Tr "issues"}}</a>
+								<a class="item" href="{{AppSubURL}}/pulls">{{.i18n.Tr "pull_requests"}}</a>
+							{{end}}
+						</div>
+					</div>
+					<a href="http://lab.uabutler.com" class="item">The Lab</a>
+					<a href="https://uabutler.com/about.html" class="item">About</a>
+					<div class="right menu">
+						<a class="item{{if .PageIsExplore}} active{{end}}" href="{{AppSubURL}}/explore/repos">{{.i18n.Tr "explore"}}</a>
+						{{if .IsLogged}}
+							<div class="ui dropdown item">
+								Create <i class="dropdown icon"></i>
+								<div class="menu">
+									<a class="item" href="{{AppSubURL}}/repo/create">New Repository</a>
+									<a class="item" href="{{AppSubURL}}/repo/migrate">New Migration</a>
+									<a class="item" href="{{AppSubURL}}/org/create">New Organization</a>
+								</div>
+							</div>
+							<div class="ui dropdown item">
+								User <i class="dropdown icon"></i>
+								<div class="menu">
+									<div class="header">{{.i18n.Tr "signed_in_as"}} {{.LoggedUser.Name}}</div>
+									<div class="divider"></div>
+									<a class="item" href="{{AppSubURL}}/{{.LoggedUser.Name}}">Your Profile</a>
+									<a class="item" href="{{AppSubURL}}/user/settings">Your Settings</a>
+									{{if .IsAdmin}}
+										<div class="divider"></div>
+										<a class="item" href="{{AppSubURL}}/admin">Admin Panel</a>
+									{{end}}
+									<div class="divider"></div>
+									<form id="logout-form" class="item" action="{{AppSubURL}}/user/logout" method="POST">
+										{{.CSRFTokenHTML}}
+										<div class="submit-button" data-form="#logout-form">
+											<i class="octicon octicon-sign-out"></i> {{.i18n.Tr "sign_out"}}
+										</div>
+									</form>
+								</div>
+							</div>
+						{{else}}
+							{{if .ShowRegistrationButton}}
+								<a class="item{{if .PageIsSignUp}} active{{end}}" href="{{AppSubURL}}/user/sign_up">Register</a>
+							{{end}}
+							<a class="item{{if .PageIsSignIn}} active{{end}}" href="{{AppSubURL}}/user/login?redirect_to={{.Link}}">Sign In</a>
+
+						{{end}}
+					</div>
+				</div>
+			</div>
+		{{end}}
+
+		{{if .ServerNotice}}
+			<div class="ui container grid warning message">
+				<div class="content">
+					{{.ServerNotice | Str2HTML}}
+				</div>
+			</div>
+		{{end}}
+{{/*
+</div>
+</body>
+</html>
+*/}}

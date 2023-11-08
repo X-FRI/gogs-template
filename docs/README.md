@@ -40,4 +40,13 @@ git remote set-url --add remote git@x-fri.club:用户/仓库
 
 ## 同步
 
-上面说的备份也可以做到同步的功能，但如果你只是想让研究所的平台按时同步其他git平台的仓库，可以使用 Migration 功能， New Migration 时勾选 `This repository will be a mirror`， 平台将会每个小时自动同步目标平台的仓库。
+上面说的备份也可以做到同步的功能，但如果你只是想让研究所的平台按时同步其他git平台的仓库，可以使用 Migration 功能， New Migration 时填写对应平台的仓库，账户和密码（也可能是token）后，勾选 `This repository will be a mirror`， 平台将会每个小时自动同步目标平台的仓库。
+
+支持的平台:
+
+- [x] Github
+- [x] Gitee
+- [x] Gitlab
+- [x] Bitbucket
+- [x] Sr.ht
+- [x] Coding.net

@@ -3,11 +3,12 @@
 ## 当前状态
 
 - [x] 开放注册
-- [x] 用户创建组织
-- [x] 用户仓库数量
+- [x] 开放用户创建组织权限
+- [x] 用户仓库数量: 不限
 - [x] SSH
-- [x] Mirror interval
-- [x] WebHook (gogs slack discord dingtalk)
+- [x] Migration
+- [x] WebHook
+- [x] Two-factor Authentication 
 
 欢迎，这里是X档案研究所内部的代码托管平台，基于Gogs提供简洁快速的git服务，用于：
 
@@ -29,6 +30,15 @@ git remote add xfri git@x-fri.club:用户/仓库
 ```
 git remote add xfri git@8.134.192.36:用户/仓库
 ```
+
+## SSH
+
+平台禁止用户使用HTTP进行Push / Pull等远程操作，必须走SSH，配置方法为：`User -> Your Settings -> SSH Keys -> Add Key` 然后将你的SSH公钥复制粘贴并添加。
+
+__Tips:__
+- Linux下，SSH公钥一般在 `~/.ssh/id_rsa.pub`，如果不存在，则通过 `ssh-key-gen` 生成
+- Windows下，SSH公钥一般在 `C:\Users\用户名/.ssh/id_rsa.pub`，如果不存在，则通过 `ssh-key-gen` 生成
+
 
 ## 备份
 

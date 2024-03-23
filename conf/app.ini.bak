@@ -4,7 +4,7 @@ RUN_MODE   = prod
 
 [database]
 TYPE     = sqlite3
-HOST     = 127.0.0.1:5432
+HOST     = 127.0.0.1:3306
 NAME     = gogs
 SCHEMA   = public
 USER     = gogs
@@ -13,33 +13,31 @@ SSL_MODE = disable
 PATH     = data/data.db
 
 [repository]
-ROOT           = /home/git/repos
+ROOT           = /home/git/gogs/repos
 DEFAULT_BRANCH = main
+MAX_CREATION_LIMIT = -1
+DISABLE_HTTP_GIT = true
 
 [server]
-DOMAIN           = http://8.134.192.36/
-HTTP_PORT        = 80
-EXTERNAL_URL     = http://8.134.192.36/
+DOMAIN           = x-fri.club
+HTTP_PORT        = 3000
+EXTERNAL_URL     = http://8.134.192.36
 DISABLE_SSH      = false
 SSH_PORT         = 22
 START_SSH_SERVER = false
 OFFLINE_MODE     = false
 
 [mailer]
-ENABLED = true
-HOST    = smtp-mail.outlook.com:587
-FROM    = x-fri@outlook.com
-USER    = smtp-mail.outlook.com:587
-PASSWD  = _(r+uN(4P+L*7TS
+ENABLED = false
 
 [auth]
-REQUIRE_EMAIL_CONFIRMATION  = true
+REQUIRE_EMAIL_CONFIRMATION  = false
 DISABLE_REGISTRATION        = false
 ENABLE_REGISTRATION_CAPTCHA = true
 REQUIRE_SIGNIN_VIEW         = false
 
 [user]
-ENABLE_EMAIL_NOTIFICATION = true
+ENABLE_EMAIL_NOTIFICATION = false
 
 [picture]
 DISABLE_GRAVATAR        = false
@@ -49,10 +47,17 @@ ENABLE_FEDERATED_AVATAR = false
 PROVIDER = file
 
 [log]
-MODE      = file
+MODE      = console, file
 LEVEL     = Info
 ROOT_PATH = /home/git/gogs/log
 
 [security]
 INSTALL_LOCK = true
-SECRET_KEY   = uafWnvw2xHe7MLY
+SECRET_KEY   = UBmEMPHwCW0bnR6
+
+[corn]
+ENABLED = true
+RUN_AT_START = true
+
+[corn.update_mirrors]
+SCHEDULE = @every 1h

@@ -365,7 +365,7 @@ code.wrap, pre.wrap {
 
 footer {
     margin-top: 54px !important;
-    height: 40px;
+    height: 3em;
     background-color: #fff;
     border-top: 1px solid #d6d6d6;
     clear: both;
@@ -374,7 +374,7 @@ footer {
 }
 
 footer .container {
-    padding-top: 10px
+    padding-top: 2em;
 }
 
 footer .container .fa {
